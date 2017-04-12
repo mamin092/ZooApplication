@@ -32,6 +32,7 @@ namespace ZooApp.Models.Migrations
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, name: "Ix_AnimalName");
             
+            AddColumn("dbo.Animals", "Quantiry", c => c.Double(nullable: false));
             AlterColumn("dbo.Animals", "Name", c => c.String(nullable: false, maxLength: 50));
             CreateIndex("dbo.Animals", "Name", name: "Ix_AnimalName");
             DropColumn("dbo.Animals", "Food");
@@ -49,6 +50,7 @@ namespace ZooApp.Models.Migrations
             DropIndex("dbo.AnimalFoods", new[] { "AnimalId" });
             DropIndex("dbo.Animals", "Ix_AnimalName");
             AlterColumn("dbo.Animals", "Name", c => c.String());
+            DropColumn("dbo.Animals", "Quantiry");
             DropTable("dbo.Foods");
             DropTable("dbo.AnimalFoods");
         }
