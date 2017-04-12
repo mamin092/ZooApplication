@@ -19,6 +19,7 @@ namespace ZooApp.Models
         [Index("Ix_AnimalName")]
         public string Name { get; set; }
         public string Origin { get; set; }
+        public double Quantiry { get; set; }
         public virtual ICollection<AnimalFood> AnimalFoods { get; set; }
 
     }
