@@ -48,9 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animal.cs" />
+    <Compile Include="AnimalFood.cs" />
+    <Compile Include="Food.cs" />
     <Compile Include="Migrations\201704110852585_InitialCreate.cs" />
     <Compile Include="Migrations\201704110852585_InitialCreate.Designer.cs">
       <DependentUpon>201704110852585_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704120521098_AnimalFood.cs" />
+    <Compile Include="Migrations\201704120521098_AnimalFood.Designer.cs">
+      <DependentUpon>201704120521098_AnimalFood.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +69,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201704110852585_InitialCreate.resx">
       <DependentUpon>201704110852585_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704120521098_AnimalFood.resx">
+      <DependentUpon>201704120521098_AnimalFood.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -16,7 +16,7 @@ namespace ZooApp.Services
 
         public List<ViewAnimal> GetAnimals()
         {
-           
+
             //fetch db.animal data
             //pulls all rows from table into RAM
             List<Animal> animals = db.Animals.ToList();
@@ -26,14 +26,14 @@ namespace ZooApp.Services
             List<ViewAnimal> viewAnimals = new List<ViewAnimal>();
             foreach (Animal animal in animals)
             {
-                  ViewAnimal viewAnimal = new ViewAnimal()
-                    {
-                        Id = animal.Id,
-                        Quantity = animal.Quantity,
-                        Origin = animal.Origin,
-                        Food = animal.Food,
-                        Name = animal.Name
-                    };
+                ViewAnimal viewAnimal = new ViewAnimal()
+                {
+                    Id = animal.Id,
+
+                    Origin = animal.Origin,
+
+                    Name = animal.Name
+                };
                 viewAnimals.Add(viewAnimal);
             }
             //return
@@ -41,19 +41,18 @@ namespace ZooApp.Services
             return viewAnimals;
         }
 
-     
+
 
         public ViewAnimal GetAnimal(int id)
         {
             Animal animal = db.Animals.Find(id);
-                return new ViewAnimal()
-                {
-                    Food = animal.Food,
-                    Quantity = animal.Quantity,
-                    Origin = animal.Origin,
-                    Name = animal.Name,
-                    Id = animal.Id
-                };
+            return new ViewAnimal()
+            {
+
+                Origin = animal.Origin,
+                Name = animal.Name,
+                Id = animal.Id
+            };
         }
 
 
