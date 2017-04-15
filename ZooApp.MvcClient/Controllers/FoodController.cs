@@ -36,21 +36,25 @@ namespace ZooApp.MvcClient.Controllers
         [HttpPost]
         public ActionResult Create(Food food)
         {
-            try
+            if (ModelState.IsValid)
             {
-                var save = service.Save(food);
-                if (save)
+                try
                 {
-                    return RedirectToAction("Index");
-                }
-                // TODO: Add insert logic here
+                    var save = service.Save(food);
+                    if (save)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    // TODO: Add insert logic here
 
-                return View(food);
+                    return View(food);
+                }
+                catch
+                {
+                    return View(food);
+                }
             }
-            catch
-            {
-                return View(food);
-            }
+            return View(food);
         }
 
         // GET: Food/Edit/5

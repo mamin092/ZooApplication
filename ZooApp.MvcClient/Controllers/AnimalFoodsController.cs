@@ -7,19 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ZooApp.Models;
+using ZooApp.Services;
+using ZooApp.ViewModels;
 
 namespace ZooApp.MvcClient.Controllers
 {
     public class AnimalFoodsController : Controller
     {
-        private ZooContext db = new ZooContext();
-
+      AnimalFoodService service = new AnimalFoodService();
+        ZooContext db= new ZooContext();
         // GET: AnimalFoods
         public ActionResult Index()
         {
-            var animalFoods = db.AnimalFoods.Include(a => a.Animal).Include(a => a.Food);
-            return View(animalFoods.ToList());
+
+            var result = service.GetViewFoodTotals();
+            ViewBag.total= result.Sum(x => x.TotalPrice);
+            return View(result);
         }
+
+     
 
         // GET: AnimalFoods/Details/5
         public ActionResult Details(int? id)
@@ -36,15 +42,19 @@ namespace ZooApp.MvcClient.Controllers
             return View(animalFood);
         }
 
+        public ActionResult IndexDetails(int id)
+        {
+          var foodTotals = service.GetViewFoodTotalByFood(id);
+            ViewBag.totalPrice = foodTotals.Sum(x => x.TotalPrice);
+            return View(foodTotals);
+        }
         // GET: AnimalFoods/Create
         public ActionResult Create()
         {
             ViewBag.AnimalId = new SelectList(db.Animals, "Id", "Name");
             ViewBag.FoodId = new SelectList(db.Foods, "Id", "Name");
             return View();
-        }
-
-      
+        }   
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create( AnimalFood animalFood)

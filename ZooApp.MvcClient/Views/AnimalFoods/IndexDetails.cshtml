@@ -1,10 +1,10 @@
-﻿@model IEnumerable<ZooApp.ViewModels.ViewFoodTotal>
+﻿@model IEnumerable<ZooApp.ViewModels.ViewFoodAnimalTotal>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexDetails";
 }
 
-<h2>Index</h2>
+<h2>IndexDetails</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FoodName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FoodPrice)
+            @Html.DisplayNameFor(model => model.AnimalName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalQuantity)
@@ -23,16 +20,15 @@
         <th>
             @Html.DisplayNameFor(model => model.TotalPrice)
         </th>
+      
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FoodName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FoodPrice)
+            @Html.DisplayFor(modelItem => item.AnimalName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TotalQuantity)
@@ -40,13 +36,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.TotalPrice)
         </td>
+   
+
         <td>
-            @Html.ActionLink("FoodDetails", "IndexDetails", new{id=item.FoodId})
+            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
+            @Html.ActionLink("Details", "Details", new {id = item.Id}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.Id})
         </td>
     </tr>
 }
 
 </table>
-<h3>
-  Total price:  @ViewBag.total
-</h3>
